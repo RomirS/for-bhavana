@@ -51,7 +51,7 @@ function Login() {
           <label className="block text-gray-500 mt-5" htmlFor="password">
             What's the password?
             <input
-              className="block border-t-gray-300 focus:border-t-gray-100 border-t mt-2 pt-2"
+              className="block border-t-gray-300 focus:border-t-gray-100 border-t rounded-none mt-2 pt-2"
               type="text"
               name="password"
               placeholder={"*".repeat(PASSWORD.length)}
