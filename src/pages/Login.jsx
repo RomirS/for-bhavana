@@ -23,7 +23,7 @@ function Login() {
     setPassword(value);
 
     if (value === PASSWORD) {
-      navigate("/slides");
+      navigate("/slides/0");
     }
   };
 
