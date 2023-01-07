@@ -3,11 +3,11 @@ import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { storage } from "../db/config";
-import ArrowLeftCircle from "../components/ArrowLeftCircle";
-import ArrowRightCircle from "../components/ArrowRightCircle";
+import ChevronDoubleLeft from "../components/ChevronDoubleLeft";
+import ChevronDoubleRight from "../components/ChevronDoubleRight";
 import Circle from "../components/Circle";
-import LeftArrow from "../components/LeftArrow";
-import RightArrow from "../components/RightArrow";
+import ChevronLeft from "../components/ChevronLeft";
+import ChevronRight from "../components/ChevronRight";
 import text from "../data/text";
 
 const PRIMARY_COLOR = "grey";
@@ -70,7 +70,12 @@ function Slide() {
       <div className="flex flex-col">
         <div className="mx-10 sm:mx-0 mb-4">
           {slideNo > 0 && (
-            <ArrowLeftCircle onClick={decrementSlideNo} stroke={PRIMARY_COLOR} />
+            <ChevronLeft
+              fill={PRIMARY_COLOR}
+              onClick={decrementSlideNo}
+              stroke={PRIMARY_COLOR}
+              y={4}
+            />
           )}
           <h1
             className={`${
@@ -80,7 +85,12 @@ function Slide() {
             {slideNo === 0 ? "The Beginning" : `Month ${s}`}
           </h1>
           {slideNo < 6 && (
-            <ArrowRightCircle onClick={incrementSlideNo} stroke={PRIMARY_COLOR} />
+            <ChevronRight
+              fill={PRIMARY_COLOR}
+              onClick={incrementSlideNo}
+              stroke={PRIMARY_COLOR}
+              y={4}
+            />
           )}
         </div>
         <div className="flex flex-col sm:flex-row">
@@ -98,7 +108,12 @@ function Slide() {
                   />
                 ))}
                 <div className="flex">
-                  <LeftArrow onClick={decrementImageNo} stroke={PRIMARY_COLOR} />
+                  <ChevronLeft
+                    fill="none"
+                    onClick={decrementImageNo}
+                    stroke={PRIMARY_COLOR}
+                    y={0}
+                  />
                   {[...Array(imageLen)].map((_, i) => (
                     <Circle
                       key={i}
@@ -107,7 +122,12 @@ function Slide() {
                       stroke={i + 1 === imageNo ? PRIMARY_COLOR : SECONDARY_COLOR}
                     />
                   ))}
-                  <RightArrow onClick={incrementImageNo} stroke={PRIMARY_COLOR} />
+                  <ChevronRight
+                    fill="none"
+                    onClick={incrementImageNo}
+                    stroke={PRIMARY_COLOR}
+                    y={0}
+                  />
                 </div>
               </>
             )}
