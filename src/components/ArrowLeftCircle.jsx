@@ -5,7 +5,7 @@ function ArrowLeftCircle({ className, onClick, stroke }) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      viewBox="0 0 24 24"
+      viewBox="0 1 24 24"
       strokeWidth={1.5}
       stroke={stroke}
       className={`${className} w-5 h-5 inline`}

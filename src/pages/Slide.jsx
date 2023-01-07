@@ -10,8 +10,8 @@ import LeftArrow from "../components/LeftArrow";
 import RightArrow from "../components/RightArrow";
 import text from "../data/text";
 
-const PRIMARY_COLOR = "black";
-const SECONDARY_COLOR = "grey";
+const PRIMARY_COLOR = "grey";
+const SECONDARY_COLOR = "lightgrey";
 
 function Slide() {
   const { s } = useParams();
@@ -66,13 +66,17 @@ function Slide() {
   };
 
   return (
-    <div className="flex m-auto w-5/6 sm:w-4/5 mt-10 sm:mt-32">
+    <div className="flex m-auto w-full sm:w-4/5 mt-10 sm:mt-32">
       <div className="flex flex-col">
-        <div className="mb-8">
+        <div className="mx-10 sm:mx-0 mb-4">
           {slideNo > 0 && (
             <ArrowLeftCircle onClick={decrementSlideNo} stroke={PRIMARY_COLOR} />
           )}
-          <h1 className={`${slideNo > 0 ? "mx-10" : "mr-10"} inline`}>
+          <h1
+            className={`${
+              slideNo > 0 ? "mx-5 sm:mx-8" : "mr-5 sm:mr-8"
+            } inline text-xl`}
+          >
             {slideNo === 0 ? "The Beginning" : `Month ${s}`}
           </h1>
           {slideNo < 6 && (
@@ -80,12 +84,12 @@ function Slide() {
           )}
         </div>
         <div className="flex flex-col sm:flex-row">
-          <div className="mb-8 flex flex-col sm:w-2/5 items-center">
+          <div className="mb-4 flex flex-col sm:w-2/5 items-center">
             {imageLen > 0 && (
               <>
                 {Object.keys(images).map((key) => (
                   <img
-                    className={`object-contain w-96 h-96 mb-4 ${
+                    className={`object-contain w-full sm:w-96 h-96 mb-2 ${
                       parseInt(key, 10) === imageNo ? "" : "hidden"
                     }`}
                     key={key}
@@ -98,9 +102,9 @@ function Slide() {
                   {[...Array(imageLen)].map((_, i) => (
                     <Circle
                       key={i}
-                      fill={i + 1 === imageNo ? SECONDARY_COLOR : "none"}
+                      fill={i + 1 === imageNo ? PRIMARY_COLOR : SECONDARY_COLOR}
                       onClick={() => setImageNo(i + 1)}
-                      stroke={PRIMARY_COLOR}
+                      stroke={i + 1 === imageNo ? PRIMARY_COLOR : SECONDARY_COLOR}
                     />
                   ))}
                   <RightArrow onClick={incrementImageNo} stroke={PRIMARY_COLOR} />
@@ -108,7 +112,7 @@ function Slide() {
               </>
             )}
           </div>
-          <div className="sm:ml-10 sm:w-3/5">
+          <div className="mx-10 sm:w-3/5">
             {paragraphs.map((paragraph, i) => (
               <div key={i}>
                 <p>{paragraph}</p>

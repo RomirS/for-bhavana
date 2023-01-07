@@ -8,7 +8,7 @@ function Circle({ fill, onClick, stroke }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-4 h-4"
+      className="w-4 h-4 mx-px"
       onClick={onClick}
     >
       <circle cx="12" cy="12" r="6" stroke={stroke} strokeWidth="1.5" fill={fill} />
