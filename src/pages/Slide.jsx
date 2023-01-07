@@ -3,8 +3,6 @@ import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { storage } from "../db/config";
-import ChevronDoubleLeft from "../components/ChevronDoubleLeft";
-import ChevronDoubleRight from "../components/ChevronDoubleRight";
 import Circle from "../components/Circle";
 import ChevronLeft from "../components/ChevronLeft";
 import ChevronRight from "../components/ChevronRight";
