@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { storage } from "../db/config";
 
-const PASSWORD = "happysix!";
+const PASSWORD = "fromrome";
 
 function Login() {
   const [, setImage] = useState();
