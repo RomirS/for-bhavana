@@ -6,7 +6,7 @@ import { storage } from "../db/config";
 
 const PASSWORD = "fromrome";
 const FAKE_PASSWORD = "happysix!";
-const COOKIE_EXPIRATION = 60 * 5;
+const COOKIE_EXPIRATION = 3600 * 24;
 
 function Login({ setLoginCookie }) {
   const [, setImage] = useState();
