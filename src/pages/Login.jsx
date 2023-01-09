@@ -45,9 +45,11 @@ function Login({ setLoginCookie }) {
             />
           </svg>
         </div>
-        {/* {image && <img className="block w-2/5 m-10" src={image} alt="coderbhav" />} */}
         <div className="block">
-          <label className="block text-gray-500 mt-5" htmlFor="password">
+          <label
+            className="block text-gray-500 font-semibold mt-5"
+            htmlFor="password"
+          >
             What's the password?
             <input
               className="block border-t-gray-300 focus:border-t-gray-100 border-t rounded-none mt-2 pt-2"
