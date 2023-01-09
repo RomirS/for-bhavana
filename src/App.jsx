@@ -1,12 +1,11 @@
 import React, { useCallback } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 import Login from "./pages/Login";
 import Slide from "./pages/Slide";
 
 function App() {
-  const navigate = useNavigate();
   const [cookies, setCookies] = useCookies(["isLoggedIn"]);
   const { isLoggedIn } = cookies;
 
@@ -46,7 +45,7 @@ function App() {
           path="/slides/:s"
           element={
             isLoggedIn === "true" ? (
-              <Slide navigate={navigate} setLoginCookie={setLoginCookie} />
+              <Slide setLoginCookie={setLoginCookie} />
             ) : (
               <Navigate to="/login" replace />
             )
