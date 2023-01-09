@@ -64,9 +64,10 @@ function Slide({ navigate }) {
   };
 
   return (
-    <div className="flex m-auto w-full sm:w-4/5 mt-10 sm:mt-32">
-      <div className="flex flex-col">
-        <div className="mx-10 sm:mx-0 mb-4">
+    <div className="flex flex-col sm:flex-row">
+      <div className="w-full sm:w-1/2 h-screen hidden sm:block" />
+      <div className="flex flex-col w-full sm:w-1/2 h-screen justify-center sm:fixed">
+        <div className="mx-auto mb-4">
           {slideNo > 0 && (
             <ChevronLeft
               fill={PRIMARY_COLOR}
@@ -91,54 +92,52 @@ function Slide({ navigate }) {
             />
           )}
         </div>
-        <div className="flex flex-col sm:flex-row">
-          <div className="mb-4 flex flex-col sm:w-2/5 items-center">
-            {imageLen > 0 && (
-              <>
-                {Object.keys(images).map((key) => (
-                  <img
-                    className={`object-contain w-full sm:w-96 h-96 mb-2 ${
-                      parseInt(key, 10) === imageNo ? "" : "hidden"
-                    }`}
-                    key={key}
-                    src={images[key]}
-                    alt="Loading..."
+        <div className="mb-4 flex flex-col items-center">
+          {imageLen > 0 && (
+            <>
+              {Object.keys(images).map((key) => (
+                <img
+                  className={`object-contain w-full sm:w-96 h-96 mb-2 ${
+                    parseInt(key, 10) === imageNo ? "" : "hidden"
+                  }`}
+                  key={key}
+                  src={images[key]}
+                  alt="Loading..."
+                />
+              ))}
+              <div className="flex">
+                <ChevronLeft
+                  fill="none"
+                  onClick={decrementImageNo}
+                  stroke={PRIMARY_COLOR}
+                  y={0}
+                />
+                {[...Array(imageLen)].map((_, i) => (
+                  <Circle
+                    key={i}
+                    fill={i + 1 === imageNo ? PRIMARY_COLOR : SECONDARY_COLOR}
+                    onClick={() => setImageNo(i + 1)}
+                    stroke={i + 1 === imageNo ? PRIMARY_COLOR : SECONDARY_COLOR}
                   />
                 ))}
-                <div className="flex">
-                  <ChevronLeft
-                    fill="none"
-                    onClick={decrementImageNo}
-                    stroke={PRIMARY_COLOR}
-                    y={0}
-                  />
-                  {[...Array(imageLen)].map((_, i) => (
-                    <Circle
-                      key={i}
-                      fill={i + 1 === imageNo ? PRIMARY_COLOR : SECONDARY_COLOR}
-                      onClick={() => setImageNo(i + 1)}
-                      stroke={i + 1 === imageNo ? PRIMARY_COLOR : SECONDARY_COLOR}
-                    />
-                  ))}
-                  <ChevronRight
-                    fill="none"
-                    onClick={incrementImageNo}
-                    stroke={PRIMARY_COLOR}
-                    y={0}
-                  />
-                </div>
-              </>
-            )}
-          </div>
-          <div className="mx-10 sm:w-3/5">
-            {paragraphs.map((paragraph, i) => (
-              <div key={i}>
-                <p>{paragraph}</p>
-                <br />
+                <ChevronRight
+                  fill="none"
+                  onClick={incrementImageNo}
+                  stroke={PRIMARY_COLOR}
+                  y={0}
+                />
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
+      </div>
+      <div className="flex flex-col w-full sm:w-1/2 px-8 sm:pt-20 sm:pr-8 lg:pr-32 text-sm xl:text-lg">
+        {paragraphs.map((paragraph, i) => (
+          <div key={i}>
+            <p>{paragraph}</p>
+            <br />
+          </div>
+        ))}
       </div>
     </div>
   );
