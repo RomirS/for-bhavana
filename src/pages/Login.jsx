@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
-import { useNavigate } from "react-router-dom";
+import { withCookies } from "react-cookie";
 
 import { storage } from "../db/config";
 
 const PASSWORD = "fromrome";
 
-function Login() {
+function Login({ setLoginCookie }) {
   const [, setImage] = useState();
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     getDownloadURL(ref(storage, "images/lockscreen/coderbhav.jpg")).then((url) => {
@@ -23,7 +22,7 @@ function Login() {
     setPassword(value);
 
     if (value === PASSWORD) {
-      navigate("/slides/0");
+      setLoginCookie(true, { maxAge: 20 });
     }
   };
 
@@ -65,4 +64,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default withCookies(Login);

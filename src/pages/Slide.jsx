@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { withCookies } from "react-cookie";
 
 import { storage } from "../db/config";
 import Circle from "../components/Circle";
@@ -11,11 +12,10 @@ import text from "../data/text";
 const PRIMARY_COLOR = "grey";
 const SECONDARY_COLOR = "lightgrey";
 
-function Slide() {
+function Slide({ navigate }) {
   const { s } = useParams();
   const [images, setImages] = useState({});
   const [imageNo, setImageNo] = useState(1);
-  const navigate = useNavigate();
 
   const slideNo = parseInt(s, 10) || 0;
   const imageLen = Object.keys(images).length;
@@ -144,4 +144,4 @@ function Slide() {
   );
 }
 
-export default Slide;
+export default withCookies(Slide);
