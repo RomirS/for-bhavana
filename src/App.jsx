@@ -23,7 +23,7 @@ function App() {
           path="/"
           exact
           element={
-            isLoggedIn === "true" ? (
+            isLoggedIn === "true" || isLoggedIn === "notbhav" ? (
               <Navigate to="/slides/0" replace />
             ) : (
               <Login setLoginCookie={setLoginCookie} />
@@ -34,7 +34,7 @@ function App() {
           path="/login"
           exact
           element={
-            isLoggedIn === "true" ? (
+            isLoggedIn === "true" || isLoggedIn === "notbhav" ? (
               <Navigate to="/slides/0" replace />
             ) : (
               <Login setLoginCookie={setLoginCookie} />
@@ -44,8 +44,8 @@ function App() {
         <Route
           path="/slides/:s"
           element={
-            isLoggedIn === "true" ? (
-              <Slide setLoginCookie={setLoginCookie} />
+            isLoggedIn === "true" || isLoggedIn === "notbhav" ? (
+              <Slide isLoggedIn={isLoggedIn} setLoginCookie={setLoginCookie} />
             ) : (
               <Navigate to="/login" replace />
             )
