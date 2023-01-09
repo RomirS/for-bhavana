@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { withCookies } from "react-cookie";
 
 import { storage } from "../db/config";
-import Circle from "../components/Circle";
-import ChevronLeft from "../components/ChevronLeft";
-import ChevronRight from "../components/ChevronRight";
+import Circle from "../icons/Circle";
+import ChevronLeft from "../icons/ChevronLeft";
+import ChevronRight from "../icons/ChevronRight";
 import text from "../data/text";
 
 const PRIMARY_COLOR = "grey";

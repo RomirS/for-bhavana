@@ -22,7 +22,7 @@ function Login({ setLoginCookie }) {
     setPassword(value);
 
     if (value === PASSWORD) {
-      setLoginCookie(true, { maxAge: 20 });
+      setLoginCookie(true, { maxAge: 60 * 5 });
     }
   };
 
