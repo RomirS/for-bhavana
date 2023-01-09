@@ -10,7 +10,7 @@ import ChevronRight from "../icons/ChevronRight";
 import Navbar from "../components/Navbar";
 import text from "../data/text";
 
-const PRIMARY_COLOR = "grey";
+const PRIMARY_COLOR = "white";
 const SECONDARY_COLOR = "lightgrey";
 
 function Slide({ setLoginCookie }) {
@@ -66,9 +66,21 @@ function Slide({ setLoginCookie }) {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full h-screen">
+      <div className="w-full h-screen fixed z-0">
+        {Object.keys(images).map((key) => (
+          <img
+            className={`object-cover w-full h-screen blur-2xl ${
+              parseInt(key, 10) === imageNo ? "" : "hidden"
+            }`}
+            key={key}
+            src={images[key]}
+            alt="Loading..."
+          />
+        ))}
+      </div>
       <Navbar setImageNo={setImageNo} setLoginCookie={setLoginCookie} />
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row z-10">
         <div className="w-full sm:w-1/2 h-screen hidden sm:block" />
         <div className="flex flex-col w-full sm:w-1/2 h-screen justify-center sm:fixed">
           <div className="mx-auto mb-4">
@@ -83,7 +95,7 @@ function Slide({ setLoginCookie }) {
             <h1
               className={`${
                 slideNo > 0 ? "mx-5 sm:mx-8" : "mr-5 sm:mr-8"
-              } inline text-xl`}
+              } inline text-xl text-white`}
             >
               {slideNo === 0 ? "The Beginning" : `Month ${s}`}
             </h1>
@@ -135,10 +147,10 @@ function Slide({ setLoginCookie }) {
             )}
           </div>
         </div>
-        <div className="flex flex-col w-full sm:w-1/2 px-8 sm:pt-20 sm:pr-8 lg:pr-32 text-sm xl:text-lg">
+        <div className="flex flex-col w-full sm:w-1/2 min-h-screen sm:h-auto px-8 pt-20 sm:pr-8 lg:pr-32 text-md xl:text-lg bg-white/50">
           {paragraphs.map((paragraph, i) => (
             <div key={i}>
-              <p>{paragraph}</p>
+              <p className="text-black">{paragraph}</p>
               <br />
             </div>
           ))}
