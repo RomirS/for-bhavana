@@ -19,7 +19,7 @@ function Navbar({ setLoginCookie }) {
         <div className="flex w-1/2 mr-8 sm:mr-16 justify-end">
           {[...Array(7)].map((_, i) => (
             <button
-              className="inline mx-px sm:mx-4 my-2"
+              className="inline mx-2 sm:mx-4 my-2"
               key={i}
               onClick={() => navigate(`/slides/${i}`)}
               type="button"
