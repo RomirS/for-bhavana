@@ -19,6 +19,9 @@ function Slide({ isLoggedIn, setLoginCookie }) {
   const navigate = useNavigate();
   const [images, setImages] = useState({});
   const [imageNo, setImageNo] = useState(1);
+  // eslint-disable-next-line no-undef
+  const [audio, setAudio] = useState();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const slideNo = parseInt(s, 10) || 0;
   const imageLen = Object.keys(images).length;
@@ -44,6 +47,19 @@ function Slide({ isLoggedIn, setLoginCookie }) {
         });
       });
     });
+
+    const audioRef = ref(storage, `audio/${slideNo}.mp3`);
+    getDownloadURL(audioRef)
+      .then((url) => {
+        // eslint-disable-next-line no-undef
+        setAudio(new Audio(url));
+      })
+      .catch(() => {
+        getDownloadURL(ref(storage, `audio/0.mp3`)).then((url) => {
+          // eslint-disable-next-line no-undef
+          setAudio(new Audio(url));
+        });
+      });
   }, [slideNo]);
 
   const incrementSlideNo = () => {
@@ -64,6 +80,15 @@ function Slide({ isLoggedIn, setLoginCookie }) {
   const decrementImageNo = () => {
     const idx = imageNo - 1 < 1 ? imageLen : imageNo - 1;
     setImageNo(idx);
+  };
+
+  const playPause = () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -110,17 +135,19 @@ function Slide({ isLoggedIn, setLoginCookie }) {
             )}
           </div>
           <div className="mb-4 flex flex-col items-center">
-            {imageLen > 0 && (
+            {imageLen > 0 && !!audio && (
               <>
                 {Object.keys(images).map((key) => (
-                  <img
-                    className={`object-contain w-full sm:w-96 h-96 mb-2 ${
-                      parseInt(key, 10) === imageNo ? "" : "hidden"
-                    }`}
-                    key={key}
-                    src={images[key]}
-                    alt="Loading..."
-                  />
+                  <button type="button" onClick={playPause}>
+                    <img
+                      className={`object-contain w-full sm:w-96 h-96 mb-2 ${
+                        parseInt(key, 10) === imageNo ? "" : "hidden"
+                      }`}
+                      key={key}
+                      src={images[key]}
+                      alt="Loading..."
+                    />
+                  </button>
                 ))}
                 <div className="flex">
                   <ChevronLeft
