@@ -5,6 +5,8 @@ import { withCookies } from "react-cookie";
 import { storage } from "../db/config";
 
 const PASSWORD = "fromrome";
+const FAKE_PASSWORD = "happysix!";
+const COOKIE_EXPIRATION = 60 * 5;
 
 function Login({ setLoginCookie }) {
   const [, setImage] = useState();
@@ -22,7 +24,9 @@ function Login({ setLoginCookie }) {
     setPassword(value);
 
     if (value === PASSWORD) {
-      setLoginCookie(true, { maxAge: 60 * 5 });
+      setLoginCookie(true, { maxAge: COOKIE_EXPIRATION });
+    } else if (value === FAKE_PASSWORD) {
+      setLoginCookie("notbhav", { maxAge: COOKIE_EXPIRATION });
     }
   };
 

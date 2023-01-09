@@ -9,11 +9,12 @@ import ChevronLeft from "../icons/ChevronLeft";
 import ChevronRight from "../icons/ChevronRight";
 import Navbar from "../components/Navbar";
 import text from "../data/text";
+import fakeText from "../data/fakeText";
 
 const PRIMARY_COLOR = "white";
 const SECONDARY_COLOR = "lightgrey";
 
-function Slide({ setLoginCookie }) {
+function Slide({ isLoggedIn, setLoginCookie }) {
   const { s } = useParams();
   const navigate = useNavigate();
   const [images, setImages] = useState({});
@@ -150,7 +151,9 @@ function Slide({ setLoginCookie }) {
         <div className="flex flex-col w-full sm:w-1/2 min-h-screen sm:h-auto px-8 pt-20 sm:pr-8 lg:pr-32 text-md xl:text-lg bg-white/50">
           {paragraphs.map((paragraph, i) => (
             <div key={i}>
-              <p className="text-black">{paragraph}</p>
+              <p className="text-black">
+                {isLoggedIn === "true" ? paragraph : fakeText}
+              </p>
               <br />
             </div>
           ))}
